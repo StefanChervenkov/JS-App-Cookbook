@@ -15,7 +15,10 @@ function login(e) {
     })
         .then(res => {
             if (!res.ok) {
-                throw new Error();
+               return res.json()
+               .then(data => {
+                throw new Error(data.message)
+               });
             }
 
             return res.json()
